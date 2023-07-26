@@ -1,0 +1,87 @@
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.JWindow;
+
+public class GUI implements ActionListener {
+	
+	static JLabel label; 
+	static JLabel password;
+	static JTextField usertext;  
+	static JPasswordField userpasswd; 
+	static JButton button;
+	static JLabel login;
+	
+	//isto é uma forma diferente de fazer o Scanner input = new Scanner com um scope global
+
+	public static void main(String[] args) {
+		
+		JFrame frame = new JFrame();
+		JPanel panel = new JPanel();
+		JPanel panelwd = new JPanel();
+		frame.setSize(600,500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.add(panel);
+		
+		panel.setLayout(null);
+		//JWindow window = new JWindow(); Ignore this
+		/*user label and a user textbox, a password label and a password textbox, and then a login button*/
+		
+		label = new JLabel("user");
+		label.setBounds(10, 20, 80, 25);
+		panel.add(label);
+		usertext = new JTextField(20); //inside this constructor I can set the text lenght
+		usertext.setBounds(100, 20, 165, 25); 
+		panel.add(usertext);
+		
+		button = new JButton("Login→");
+		button.setBounds(60, 100, 80, 25);
+		button.addActionListener(new GUI()); //Gui now has the properties of the actionListener interface line 60
+		panel.add(button);
+		
+		login = new JLabel(""); //this will be the sucsseful login message
+		login.setBounds(10, 150, 600, 600);
+		login.setBackground(new Color(66, 66, 66));
+		panel.add(login);
+		//login.setText("Authentication succeded");
+		
+		password = new JLabel("password"); 
+		password.setBounds(10, 50, 80, 25);
+		panel.add(password);
+		userpasswd = new JPasswordField(5); //Password field is like text field build specificzlly for passwords
+		userpasswd.setBounds(100, 50, 165, 25); //os ultimos dois são o tamnho da text box, os primeuiros a posição pelo que vi
+		panel.add(userpasswd);
+		
+		frame.setVisible(true);
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) { //the action listener inteface
+		// TODO Auto-generated method stub
+		String user = usertext.getText(); //pega no user, que é o resultado do que o utilizador escreve na usertext textbox
+		String password = userpasswd.getText();
+		
+		if (user.equals("admin") && password.equals("admin")) {
+			login.setText("user " + user + " " + "authenticating... " + " " + "Autehntication sucseeful:"
+					+ "\n" + " Welcome admin!");
+		}
+		//System.out.println(user + " " + password); //butão vai imprimir isto
+	
+		else {
+		login.setText("Authentication failed!!!");
+		
+		}
+	
+	}
+
+}
