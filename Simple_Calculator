@@ -1,0 +1,281 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class calculator {
+    private JFrame frame;
+    private JTextField textField;
+    private String currentInput = "";
+    private char currentOperator = ' ';
+    private int currentNumber = 0;
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    calculator window = new calculator();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Create the application.
+     */
+    public calculator() {
+        initialize();
+    }
+
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 435, 385);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+
+        textField = new JTextField();
+        textField.setBounds(56, 24, 296, 40);
+        frame.getContentPane().add(textField);
+        textField.setColumns(10);
+
+        JButton button1 = new JButton("1");
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "1";
+                textField.setText(currentInput);
+            }
+        });
+        button1.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button1.setBounds(10, 100, 72, 45);
+        frame.getContentPane().add(button1);
+
+        JButton button2 = new JButton("2");
+        button2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "2";
+                textField.setText(currentInput);
+            }
+        });
+        button2.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button2.setBounds(10, 157, 72, 45);
+        frame.getContentPane().add(button2);
+
+        // Add similar action listeners for buttons 3 to 9.
+        
+        
+        
+        
+     // ... (previous code)
+
+        JButton button3 = new JButton("3");
+        button3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "3";
+                textField.setText(currentInput);
+            }
+        });
+        button3.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button3.setBounds(10, 213, 72, 45);
+        frame.getContentPane().add(button3);
+
+        JButton button4 = new JButton("4");
+        button4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "4";
+                textField.setText(currentInput);
+            }
+        });
+        button4.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button4.setBounds(92, 100, 72, 45);
+        frame.getContentPane().add(button4);
+
+        JButton button5 = new JButton("5");
+        button5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "5";
+                textField.setText(currentInput);
+            }
+        });
+        button5.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button5.setBounds(92, 157, 72, 45);
+        frame.getContentPane().add(button5);
+
+        JButton button6 = new JButton("6");
+        button6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "6";
+                textField.setText(currentInput);
+            }
+        });
+        button6.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button6.setBounds(92, 213, 72, 45);
+        frame.getContentPane().add(button6);
+
+        JButton button7 = new JButton("7");
+        button7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "7";
+                textField.setText(currentInput);
+            }
+        });
+        button7.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button7.setBounds(174, 100, 72, 45);
+        frame.getContentPane().add(button7);
+
+        JButton button8 = new JButton("8");
+        button8.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "8";
+                textField.setText(currentInput);
+            }
+        });
+        button8.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button8.setBounds(174, 157, 72, 45);
+        frame.getContentPane().add(button8);
+
+        JButton button9 = new JButton("9");
+        button9.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "9";
+                textField.setText(currentInput);
+            }
+        });
+        button9.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button9.setBounds(174, 213, 72, 45);
+        frame.getContentPane().add(button9);
+
+
+
+        JButton button0 = new JButton("0");
+        button0.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput += "0";
+                textField.setText(currentInput);
+            }
+        });
+        button0.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        button0.setBounds(10, 269, 72, 45);
+        frame.getContentPane().add(button0);
+        
+        
+        
+        
+        
+        JButton buttonplus = new JButton("+");
+        buttonplus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                performCalculation();
+                currentOperator = '+';
+            }
+        });
+        buttonplus.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        buttonplus.setBounds(301, 100, 72, 45);
+        frame.getContentPane().add(buttonplus);
+        
+
+        JButton buttonminus = new JButton("-");
+        buttonminus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                performCalculation();
+                currentOperator = '-';
+            }
+        });
+        buttonminus.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        buttonminus.setBounds(301, 157, 72, 45);
+        frame.getContentPane().add(buttonminus);
+
+        JButton buttonmult = new JButton("*");
+        buttonmult.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                performCalculation();
+                currentOperator = '*';
+            }
+        });
+        buttonmult.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        buttonmult.setBounds(301, 213, 72, 45);
+        frame.getContentPane().add(buttonmult);
+
+        JButton buttondiv = new JButton(":");
+        buttondiv.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                performCalculation();
+                currentOperator = '/';
+            }
+        });
+        buttondiv.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        buttondiv.setBounds(301, 269, 72, 45);
+        frame.getContentPane().add(buttondiv);
+        
+        JButton buttonequal = new JButton("=");
+        buttonequal.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                performCalculation();
+                currentOperator = ' ';
+            }
+        });
+        buttonequal.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        buttonequal.setBounds(174, 269, 72, 45);
+        frame.getContentPane().add(buttonequal);
+
+        JButton buttonclear = new JButton("C");
+        buttonclear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput = "";
+                currentOperator = ' ';
+                currentNumber = 0;
+                textField.setText("");
+            }
+        });
+        buttonclear.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        buttonclear.setBounds(92, 269, 72, 45);
+        frame.getContentPane().add(buttonclear);
+    }
+int x = 1;
+    private void performCalculation() {
+        if (!currentInput.isEmpty()) {
+            int num = Integer.parseInt(currentInput);
+            switch (currentOperator) {
+                case '+':
+                    currentNumber += num;
+                    break;
+                case '-':
+                    currentNumber -= num;
+                    break;
+                case '*':
+                    currentNumber *= num;
+                    break;
+                case '/':
+                    if (num != 0) {
+                        currentNumber /= num;
+                        textField.setText(String.valueOf(currentNumber));
+                    } else {
+                        // Display a warning if the user tries to divide by zero
+                        textField.setText("Division by zero is not allowed!");
+                    }
+                    break;
+                default:
+                    currentNumber = num;
+                    break;
+            }
+            if (currentOperator != '/') {
+                // Only set the text field if it's not a division operation
+                textField.setText(String.valueOf(currentNumber));
+            }
+            currentInput = "";
+           
+        }
+    }
+}
