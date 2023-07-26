@@ -1,0 +1,148 @@
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class pedrapapeltesoura {
+
+    private JFrame frame;
+    private String escolha;
+    private JTextArea resultTextArea;
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    pedrapapeltesoura window = new pedrapapeltesoura();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Create the application.
+     */
+    public pedrapapeltesoura() {
+        initialize();
+    }
+
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 450, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+
+        // Create a JTextArea to display the results
+        resultTextArea = new JTextArea();
+        resultTextArea.setEditable(false);
+
+        // Wrap the JTextArea in a JScrollPane to enable scrolling
+        JScrollPane scrollPane = new JScrollPane(resultTextArea);
+        scrollPane.setBounds(24, 150, 375, 100);
+        frame.getContentPane().add(scrollPane);
+
+        // pedra para o utilizador
+        JButton rock = new JButton("✊");
+        rock.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                escolha = "pedra"; // Set the value of escolha to "pedra"
+                // Now, you can trigger the game logic here or call a method to handle the game logic.
+                playGame();
+            }
+        });
+        rock.setBounds(24, 113, 89, 23);
+        frame.getContentPane().add(rock);
+
+        // tesoura para o utilizador
+        JButton tesoura = new JButton("✌️");
+        tesoura.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                escolha = "tesoura"; // Set the value of escolha to "tesoura"
+                // Now, you can trigger the game logic here or call a method to handle the game logic.
+                playGame();
+            }
+        });
+
+        tesoura.setBounds(168, 113, 89, 23);
+        frame.getContentPane().add(tesoura);
+
+        JButton paper = new JButton("✋");
+        paper.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                escolha = "papel"; // Set the value of escolha to "papel"
+                // Now, you can trigger the game logic here or call a method to handle the game logic.
+                playGame();
+            }
+        });
+
+        paper.setBounds(310, 113, 89, 23);
+        frame.getContentPane().add(paper);
+    }
+
+    // ...
+
+    public class Cpu {
+
+        public String cpu() {
+            String[] computador = {"pedra", "papel", "tesoura"};
+            Random random = new Random();
+            int index = random.nextInt(computador.length); // uma int index que tem um valor random dentro da length da lista computador
+            String computador_escolha = computador[index];
+            return computador_escolha;
+        }
+    }
+
+    // Define the playGame method to start the game
+    private void playGame() {
+
+        // Get the CPU's random choice each time playgame() is called
+        Cpu var = new Cpu();
+        String cpu = var.cpu();
+
+        String result;
+        if (escolha.equals("papel")) {
+            if (cpu.equals("pedra")) {
+                result = "Ganhou!!!";
+            } else if (cpu.equals("papel")) {
+                result = "Empate!!!";
+            } else { // cpu.equals("tesoura")
+                result = "Derrota!!!";
+            }
+        } else if (escolha.equals("pedra")) {
+            if (cpu.equals("pedra")) {
+                result = "Empate!!!";
+            } else if (cpu.equals("papel")) {
+                result = "Derrota!!!";
+            } else { // cpu.equals("tesoura")
+                result = "Ganhou!!!";
+            }
+        } else { // escolha.equals("tesoura")
+            if (cpu.equals("tesoura")) {
+                result = "Empate!!!";
+            } else if (cpu.equals("pedra")) {
+                result = "Derrota!!!";
+            } else { // cpu.equals("papel")
+                result = "Ganhou!!!";
+            }
+        }
+
+        // Update result in the JTextArea
+        resultTextArea.setText("Escolheu " + escolha
+                + "\nComputador escolheu: " + cpu
+                + result);
+    }
+}
